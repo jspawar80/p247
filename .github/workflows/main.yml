@@ -29,10 +29,6 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/p247beserver:${{ env.BRANCH_NAME }}
 
-      - name: Prepare docker-compose file
-        run: |
-          sed -e "s/branchname/${{ env.BRANCH_NAME }}/g" docker-compose-template.yml > docker-compose.yml
-
       - name: Deploy to Docker
         uses: appleboy/ssh-action@v0.1.2
         with:
@@ -54,6 +50,7 @@ jobs:
               cd $REPOSITORY_NAME
               git checkout $CURRENT_BRANCH
             fi
+            sed -e "s/branchname/${{ env.BRANCH_NAME }}/g" docker-compose-template.yml > docker-compose.yml
             docker-compose down
             docker-compose pull
             docker-compose up -d
