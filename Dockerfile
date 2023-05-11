@@ -16,4 +16,5 @@ COPY . .
 # Expose port 3000 to the outside world
 EXPOSE 3000
 
-CMD [ "node", "index.js" ]
+# Start the application
+CMD [ "npm", "start" ]
