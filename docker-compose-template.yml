@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   app-branchname:
-    image: jspawar80/test-docker:branchname
+    image: username/imagename:branchname
     restart: always
     ports:
       - 3000:3000
