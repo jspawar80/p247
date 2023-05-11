@@ -23,7 +23,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/test-docker:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/p247beserver:latest
 
       - name: Deploy to Docker
         uses: appleboy/ssh-action@v0.1.2
