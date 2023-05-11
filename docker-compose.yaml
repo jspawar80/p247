@@ -1,16 +1,11 @@
 version: '3.8'
 
 services:
-  app:
-    build: .
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-    #image: jspawar80/test-docker:latest
+  app-branchname:
+    image: jspawar80/test-docker:branchname
     restart: always
     ports:
       - 3000:3000
     environment:
-      - NODE_ENV=development
+      -  NODE_ENV=development
       #- NODE_ENV=production
-    command: npm start
