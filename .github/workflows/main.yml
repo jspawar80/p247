@@ -47,6 +47,7 @@ jobs:
               cd $REPOSITORY_NAME
               git checkout $CURRENT_BRANCH
             fi
+            sed -e "s/branchname/${{ github.ref_name/"/"("-") }}/g" docker-compose-template.yml > docker-compose.yml
             docker-compose down
             docker-compose pull
             docker-compose up -d
