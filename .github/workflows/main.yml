@@ -27,7 +27,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/p247beserver:${{ env.BRANCH_NAME }}
+          tags: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.APP_NAME }}:${{ env.BRANCH_NAME }}
 
       - name: Deploy to Docker
         uses: appleboy/ssh-action@v0.1.2
@@ -51,6 +51,8 @@ jobs:
               git checkout $CURRENT_BRANCH
             fi
             sed -e "s/branchname/${{ env.BRANCH_NAME }}/g" docker-compose-template.yml > docker-compose.yml
+            sed -i -e "s/imagename/${{ secrets.APP_NAME }}/g" docker-compose.yml
+            sed -i -e "s/username/${{ secrets.DOCKER_USERNAME }}/g" docker-compose.yml
             docker-compose down
             docker-compose pull
             docker-compose up -d
