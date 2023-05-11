@@ -23,8 +23,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/p247beserver:${{ github.ref }}
-
+          tags: ${{ secrets.DOCKER_USERNAME }}/p247beserver:${GITHUB_REF##*/}
       - name: Deploy to Docker
         uses: appleboy/ssh-action@v0.1.2
         with:
